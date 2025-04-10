@@ -1,0 +1,16 @@
+@import "tailwindcss";
+@import "@fontsource/handlee";
+@import "@fontsource/crete-round";
+body {
+  background-color: black;
+  color: white;
+}
+header,
+footer {
+  font-family: "Crete Round", serif;
+  padding: 1rem;
+}
+main {
+  font-family: "Handlee", cursive;
+  padding: 1rem;
+}
