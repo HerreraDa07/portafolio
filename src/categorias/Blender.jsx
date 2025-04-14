@@ -3,11 +3,13 @@ const Blender = {
   proyectos: [
     {
       id: 1,
-      titulo: "Primer proyecto en Blender",
+      titulo: "Calabaza de Halloween",
+      url: "/portafolio/modelos3d/calabaza.glb",
     },
     {
       id: 2,
-      titulo: "Segundo proyecto de Blender",
+      titulo: "Tanque de Guerra",
+      url: "/portafolio/modelos3d/tanquedeguerra.glb",
     },
   ],
 };
