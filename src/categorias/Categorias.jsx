@@ -25,7 +25,7 @@ function Categorias() {
   return (
     <div>
       <TabGroup>
-        <TabList className="flex flex-row justify-center text-[1.3rem] 2xl:text-5xl md:text-4xl sm:text-3xl 2xl:gap-32 xl:gap-24 lg:gap-16 md:gap-8 sm:gap-4 gap-1">
+        <TabList className="flex flex-row justify-center text-[1.1rem] 2xl:text-5xl md:text-4xl sm:text-3xl 2xl:gap-32 xl:gap-24 lg:gap-16 md:gap-8 sm:gap-4 gap-1">
           {categorias.map(({ nombre }, index) => (
             <motion.div
               key={nombre}
@@ -49,7 +49,7 @@ function Categorias() {
           <TabPanels className="flex md:w-1/2 py-5 text-[1rem] 2xl:text-5xl xl:text-4xl lg:text-3xl md:text-2xl sm:text-[1.3rem]">
             {categorias.map(({ nombre, proyectos }) => (
               <TabPanel key={nombre}>
-                <ul>
+                <ul className="flex flex-col gap-1 sm:gap-2 md:gap-4 lg:gap-6">
                   {proyectos.map((proyecto) => (
                     <li
                       key={proyecto.id}

@@ -11,7 +11,7 @@ function Model({ url }) {
 }
 function Panel3D({ modelo3D }) {
   return (
-    <div className="bg-white md:w-1/2 h-80 md:h-[30rem] lg:h-[40rem] xl:h-[20rem] 2x1:h-[30rem]">
+    <div className="bg-[#cfcfcf] border-8 rounded-[3rem] md:w-1/2 h-80 md:h-[30rem] lg:h-[40rem] xl:h-[20rem] 2xl:h-[31rem]">
       <Canvas>
         <Suspense>
           <ambientLight intensity={0.5} />

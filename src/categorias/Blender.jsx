@@ -11,6 +11,21 @@ const Blender = {
       titulo: "Tanque de Guerra",
       url: "/portafolio/modelos3d/tanquedeguerra.glb",
     },
+    {
+      id: 3,
+      titulo: "Cuchillo de Combate",
+      url: "/portafolio/modelos3d/cuchillodecombate.glb",
+    },
+    {
+      id: 4,
+      titulo: "Metralleta Vulcan",
+      url: "/portafolio/modelos3d/metralletavulcan.glb",
+    },
+    {
+      id: 5,
+      titulo: "Revolver",
+      url: "/portafolio/modelos3d/revolver.glb",
+    },
   ],
 };
 
