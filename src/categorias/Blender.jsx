@@ -26,6 +26,11 @@ const Blender = {
       titulo: "Revolver",
       url: "/portafolio/modelos3d/revolver.glb",
     },
+    {
+      id: 6,
+      titulo: "Espada",
+      url: "/portafolio/modelos3d/espada.glb",
+    },
   ],
 };
 

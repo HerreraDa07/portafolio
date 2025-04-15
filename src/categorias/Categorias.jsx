@@ -44,9 +44,11 @@ function Categorias() {
             </motion.div>
           ))}
         </TabList>
-        <div className="flex flex-col-reverse md:flex-row-reverse md:py-4 md:px-8">
-          <Panel3D modelo3D={modelo} />
-          <TabPanels className="flex md:w-1/2 py-5 text-[1rem] 2xl:text-5xl xl:text-4xl lg:text-3xl md:text-2xl sm:text-[1.3rem]">
+        <div className="flex flex-col-reverse md:flex-row-reverse md:py-8 md:px-8 md:justify-between">
+          <div className="w-full flex justify-center md:block justify-items-end-safe">
+            <Panel3D modelo3D={modelo} />
+          </div>
+          <TabPanels className="flex md:w-1/3 lg:w-2/4 py-5 md:py-0 pl-5 md:pl-0 text-[1rem] 2xl:text-5xl xl:text-4xl lg:text-3xl md:text-2xl sm:text-[1.3rem]">
             {categorias.map(({ nombre, proyectos }) => (
               <TabPanel key={nombre}>
                 <ul className="flex flex-col gap-1 sm:gap-2 md:gap-4 lg:gap-6">
