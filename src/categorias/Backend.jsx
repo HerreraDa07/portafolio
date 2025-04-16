@@ -3,7 +3,8 @@ const Backend = {
   proyectos: [
     {
       id: 1,
-      titulo: "Primer proyecto en Backend",
+      titulo: "Conversor de Monedas",
+      consola: "/portafolio/aplicaciones/consola/conversordemonedas.jar",
     },
   ],
 };
