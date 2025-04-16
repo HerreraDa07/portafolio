@@ -3,7 +3,13 @@ const Unity = {
   proyectos: [
     {
       id: 1,
-      titulo: "Primer proyecto en Unity",
+      titulo: "Videojuego Planet Defender",
+      url: "/portafolio/aplicaciones/videojuegos/Build/PruebasUnity.loader.js",
+    },
+    {
+      id: 2,
+      titulo: "Videojuego",
+      url: " ",
     },
   ],
 };

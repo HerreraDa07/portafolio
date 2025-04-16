@@ -2,9 +2,16 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import Portafolio from "./estructura/Portafolio";
 import "./Portafolio.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Videojuego from "./estructura/Videojuego";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <Portafolio />
+    <BrowserRouter basename="/portafolio">
+      <Routes>
+        <Route path="/" element={<Portafolio />} />
+        <Route path="/videojuego/:titulo" element={<Videojuego />} />
+      </Routes>
+    </BrowserRouter>
   </StrictMode>
 );

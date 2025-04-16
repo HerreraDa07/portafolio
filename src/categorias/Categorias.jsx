@@ -6,9 +6,12 @@ import Frontend from "./Frontend";
 import Backend from "./Backend";
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react";
 import { useEffect, useState } from "react";
-import Panel3D from "./Panel3D";
+import Panel3D from "../panel3d/Panel3D";
+import EditorUnity from "../unity/EditorUnity";
+import { useNavigate } from "react-router-dom";
 function Categorias() {
   const categorias = [Blender, Unity, Frontend, Backend];
+  const navegacion = useNavigate();
   const [modelo, setModelo] = useState("");
   useEffect(() => {
     const inicial = () => {
@@ -20,18 +23,13 @@ function Categorias() {
     if (selectedIndex === 0) {
       return <Panel3D modelo3D={modelo} />;
     }
-    if (selectedIndex === 3) {
-      return (
-        <ConsolaJava jarName="/portafolio/aplicaciones/consola/conversordemonedas.jar" />
-      );
-    }
   };
   return (
     <div>
       <TabGroup>
         {({ selectedIndex }) => (
           <>
-            <TabList className="flex flex-row justify-center text-[1.1rem] 2xl:text-5xl md:text-4xl sm:text-3xl 2xl:gap-32 xl:gap-24 lg:gap-16 md:gap-8 sm:gap-4 gap-1">
+            <TabList className="flex flex-row justify-around">
               {categorias.map(({ nombre }, index) => (
                 <motion.div
                   key={nombre}
@@ -46,32 +44,46 @@ function Categorias() {
                       : { scale: 1 }
                   }
                 >
-                  <Tab className="px-2 sm:px-5 pt-3 pb-1.5 rounded-4xl focus:outline-0 data-[selected]:bg-white/10 data-[hover]:bg-white/5 data-[selected]:data-[hover]:bg-white/15 data-[focus]:outline-1 data-[focus]:outline-white">
+                  <Tab className="px-[0.5rem] rounded-2xl focus:outline-0 data-[selected]:bg-white/10 data-[hover]:bg-white/5 data-[selected]:data-[hover]:bg-white/15 data-[focus]:outline-1 data-[focus]:outline-white">
                     {nombre}
                   </Tab>
                 </motion.div>
               ))}
             </TabList>
-            <div className="flex flex-col-reverse md:flex-row-reverse md:py-8 md:px-8 md:justify-between">
-              <div className="w-full flex justify-center md:block justify-items-end-safe">
-                {seleccion(selectedIndex)}
-              </div>
-              <TabPanels className="flex md:w-1/3 lg:w-2/4 py-5 md:py-0 pl-5 md:pl-0 text-[1rem] 2xl:text-5xl xl:text-4xl lg:text-3xl md:text-2xl sm:text-[1.3rem]">
+            <div className="h-[40rem]">
+              <TabPanels className="h-1/2">
                 {categorias.map(({ nombre, proyectos }) => (
                   <TabPanel key={nombre}>
-                    <ul className="flex flex-col gap-1 sm:gap-2 md:gap-4 lg:gap-6">
+                    <ul>
                       {proyectos.map((proyecto) => (
                         <li
                           key={proyecto.id}
-                          onClick={() => setModelo(proyecto.url)}
+                          onClick={() => {
+                            if (selectedIndex == 0) {
+                              setModelo(proyecto.url);
+                            } else if (selectedIndex === 1) {
+                              navegacion(
+                                `/videojuego/${encodeURIComponent(
+                                  proyecto.titulo
+                                )}`
+                              );
+                            }
+                          }}
                         >
-                          <a href="#">{proyecto.titulo}</a>
+                          <span
+                            className={`cursor-pointer hover:bg-white/5 px-[0.5rem] rounded-2xl ${
+                              modelo === proyecto.url ? "bg-white/10" : ""
+                            }`}
+                          >
+                            {proyecto.titulo}
+                          </span>
                         </li>
                       ))}
                     </ul>
                   </TabPanel>
                 ))}
               </TabPanels>
+              <div className="h-1/2">{seleccion(selectedIndex)}</div>
             </div>
           </>
         )}
