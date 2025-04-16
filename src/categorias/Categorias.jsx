@@ -7,7 +7,6 @@ import Backend from "./Backend";
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react";
 import { useEffect, useState } from "react";
 import Panel3D from "./Panel3D";
-import ConsolaJava from "../consola/ConsolaJava";
 function Categorias() {
   const categorias = [Blender, Unity, Frontend, Backend];
   const [modelo, setModelo] = useState("");
