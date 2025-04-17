@@ -2,7 +2,7 @@ import Categorias from "../categorias/Categorias";
 
 function Portafolio() {
   return (
-    <div className="min-h-screen min-w-screen flex flex-col">
+    <div className="h-svh w-svw flex flex-col p-4">
       <header className="top-0">
         <h1 className="text-[2rem] text-right py-[0.5rem] pr-[0.5rem]">
           Portafolio

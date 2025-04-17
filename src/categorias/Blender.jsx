@@ -46,6 +46,16 @@ const Blender = {
       titulo: "Demonio",
       url: "/portafolio/modelos3d/demonio.glb",
     },
+    {
+      id: 10,
+      titulo: "Copa",
+      url: "/portafolio/modelos3d/copa.glb",
+    },
+    {
+      id: 11,
+      titulo: "Ballesta",
+      url: "/portafolio/modelos3d/ballesta.glb",
+    },
   ],
 };
 

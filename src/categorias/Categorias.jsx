@@ -5,15 +5,20 @@ import Unity from "./Unity";
 import Frontend from "./Frontend";
 import Backend from "./Backend";
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Panel3D from "../panel3d/Panel3D";
 import EditorUnity from "../unity/EditorUnity";
 import { useNavigate } from "react-router-dom";
 function Categorias() {
+  const referencia = useRef();
   const categorias = [Blender, Unity, Frontend, Backend];
   const navegacion = useNavigate();
   const [modelo, setModelo] = useState("");
   useEffect(() => {
+    if (referencia.current) {
+      const altura = referencia.current.parentElement.offsetHeight;
+      referencia.current.style.maxHeight = `${altura}px`;
+    }
     const inicial = () => {
       setModelo("/portafolio/modelos3d/calabaza.glb");
     };
@@ -22,7 +27,7 @@ function Categorias() {
   const seleccion = (selectedIndex) => {
     if (selectedIndex === 0) {
       return (
-        <div className="flex flex-col h-[30rem] border-t-4 border-b-4">
+        <div className="flex flex-col h-1/2 border-white border-4 rounded-3xl lg:w-[45rem]">
           <Panel3D modelo3D={modelo} />
         </div>
       );
@@ -32,7 +37,7 @@ function Categorias() {
     <TabGroup className="flex flex-col flex-1 min-h-0">
       {({ selectedIndex }) => (
         <>
-          <TabList className="flex flex-row justify-around px-4">
+          <TabList className="flex flex-row justify-around">
             {categorias.map(({ nombre }, index) => (
               <motion.div
                 key={nombre}
@@ -53,14 +58,11 @@ function Categorias() {
               </motion.div>
             ))}
           </TabList>
-          <div className="flex flex-col flex-1 min-h-0">
-            <TabPanels className="flex flex-col flex-1 min-h-0 pl-4">
+          <div className="flex flex-col h-svh lg:flex-row lg:flex-0">
+            <TabPanels className="flex flex-col h-1/2 p-4">
               {categorias.map(({ nombre, proyectos }) => (
-                <TabPanel
-                  key={nombre}
-                  className="flex flex-col flex-1 min-h-0 justify-center"
-                >
-                  <ul>
+                <TabPanel key={nombre} className="flex flex-col flex-1 min-h-0">
+                  <ul ref={referencia} className="overflow-y-auto">
                     {proyectos.map((proyecto) => (
                       <li
                         key={proyecto.id}
