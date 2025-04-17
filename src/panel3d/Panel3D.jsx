@@ -19,24 +19,22 @@ function Model({ url }) {
 }
 function Panel3D({ modelo3D }) {
   return (
-    <div className="h-full bg-white/60 border-t-4 border-b-4">
-      <Canvas camera={{ position: [0, 0, 5], fov: 30 }}>
-        <Suspense>
-          <Environment preset="sunset" background={false} />
-          <Bounds fit clip maxDuration={0.5} margin={1.1}>
-            <Model url={modelo3D} />
-          </Bounds>
-          <OrbitControls
-            makeDefault
-            enableDamping
-            dampingFactor={0.5}
-            enablePan={false}
-            minDistance={0}
-            maxDistance={5}
-          />
-        </Suspense>
-      </Canvas>
-    </div>
+    <Canvas camera={{ position: [0, 0, 5], fov: 30 }} className=" ">
+      <Suspense>
+        <Environment preset="sunset" background={false} />
+        <Bounds fit clip maxDuration={0.5} margin={1.1}>
+          <Model url={modelo3D} />
+        </Bounds>
+        <OrbitControls
+          makeDefault
+          enableDamping
+          dampingFactor={0.5}
+          enablePan={false}
+          minDistance={0}
+          maxDistance={5}
+        />
+      </Suspense>
+    </Canvas>
   );
 }
 export default Panel3D;

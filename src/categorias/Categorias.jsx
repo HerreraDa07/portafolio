@@ -21,74 +21,79 @@ function Categorias() {
   }, []);
   const seleccion = (selectedIndex) => {
     if (selectedIndex === 0) {
-      return <Panel3D modelo3D={modelo} />;
+      return (
+        <div className="flex flex-col h-[30rem] border-t-4 border-b-4">
+          <Panel3D modelo3D={modelo} />
+        </div>
+      );
     }
   };
   return (
-    <div>
-      <TabGroup>
-        {({ selectedIndex }) => (
-          <>
-            <TabList className="flex flex-row justify-around">
-              {categorias.map(({ nombre }, index) => (
-                <motion.div
+    <TabGroup className="flex flex-col flex-1 min-h-0">
+      {({ selectedIndex }) => (
+        <>
+          <TabList className="flex flex-row justify-around px-4">
+            {categorias.map(({ nombre }, index) => (
+              <motion.div
+                key={nombre}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                animate={
+                  selectedIndex === index
+                    ? {
+                        scale: [1.1, 0.8, 1.1],
+                        transition: { repeat: Infinity },
+                      }
+                    : { scale: 1 }
+                }
+              >
+                <Tab className="text-[1.5rem] px-[0.5rem] rounded-2xl focus:outline-0 data-[selected]:bg-white/10 data-[hover]:bg-white/5 data-[selected]:data-[hover]:bg-white/15 data-[focus]:outline-1 data-[focus]:outline-white">
+                  {nombre}
+                </Tab>
+              </motion.div>
+            ))}
+          </TabList>
+          <div className="flex flex-col flex-1 min-h-0">
+            <TabPanels className="flex flex-col flex-1 min-h-0 pl-4">
+              {categorias.map(({ nombre, proyectos }) => (
+                <TabPanel
                   key={nombre}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                  animate={
-                    selectedIndex === index
-                      ? {
-                          scale: [1.1, 0.8, 1.1],
-                          transition: { repeat: Infinity },
-                        }
-                      : { scale: 1 }
-                  }
+                  className="flex flex-col flex-1 min-h-0 justify-center"
                 >
-                  <Tab className="px-[0.5rem] rounded-2xl focus:outline-0 data-[selected]:bg-white/10 data-[hover]:bg-white/5 data-[selected]:data-[hover]:bg-white/15 data-[focus]:outline-1 data-[focus]:outline-white">
-                    {nombre}
-                  </Tab>
-                </motion.div>
-              ))}
-            </TabList>
-            <div className="h-[40rem]">
-              <TabPanels className="h-1/2">
-                {categorias.map(({ nombre, proyectos }) => (
-                  <TabPanel key={nombre}>
-                    <ul>
-                      {proyectos.map((proyecto) => (
-                        <li
-                          key={proyecto.id}
-                          onClick={() => {
-                            if (selectedIndex == 0) {
-                              setModelo(proyecto.url);
-                            } else if (selectedIndex === 1) {
-                              navegacion(
-                                `/videojuego/${encodeURIComponent(
-                                  proyecto.titulo
-                                )}`
-                              );
-                            }
-                          }}
+                  <ul>
+                    {proyectos.map((proyecto) => (
+                      <li
+                        key={proyecto.id}
+                        onClick={() => {
+                          if (selectedIndex == 0) {
+                            setModelo(proyecto.url);
+                          } else if (selectedIndex === 1) {
+                            navegacion(
+                              `/videojuego/${encodeURIComponent(
+                                proyecto.titulo
+                              )}`
+                            );
+                          }
+                        }}
+                      >
+                        <span
+                          className={`cursor-pointer hover:bg-white/5 px-[0.5rem] rounded-2xl ${
+                            modelo === proyecto.url ? "bg-white/10" : ""
+                          }`}
                         >
-                          <span
-                            className={`cursor-pointer hover:bg-white/5 px-[0.5rem] rounded-2xl ${
-                              modelo === proyecto.url ? "bg-white/10" : ""
-                            }`}
-                          >
-                            {proyecto.titulo}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                  </TabPanel>
-                ))}
-              </TabPanels>
-              <div className="h-1/2">{seleccion(selectedIndex)}</div>
-            </div>
-          </>
-        )}
-      </TabGroup>
-    </div>
+                          {proyecto.titulo}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </TabPanel>
+              ))}
+            </TabPanels>
+            {seleccion(selectedIndex)}
+          </div>
+        </>
+      )}
+    </TabGroup>
   );
 }
 
