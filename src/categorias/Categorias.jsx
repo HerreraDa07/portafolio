@@ -1,24 +1,19 @@
 // eslint-disable-next-line no-unused-vars
 import { motion } from "motion/react";
-import Blender from "./Blender";
-import Unity from "./Unity";
-import Frontend from "./Frontend";
-import Backend from "./Backend";
+import Blender from "./tabs/Blender";
+import Unity from "./tabs/Unity";
+import Frontend from "./tabs/Frontend";
+import Backend from "./tabs/Backend";
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react";
-import { useEffect, useRef, useState } from "react";
-import Panel3D from "../panel3d/Panel3D";
-import EditorUnity from "../unity/EditorUnity";
+import { useEffect, useState } from "react";
+import Panel3D from "../blender/Panel3D";
 import { useNavigate } from "react-router-dom";
+
 function Categorias() {
-  const referencia = useRef();
   const categorias = [Blender, Unity, Frontend, Backend];
   const navegacion = useNavigate();
   const [modelo, setModelo] = useState("");
   useEffect(() => {
-    if (referencia.current) {
-      const altura = referencia.current.parentElement.offsetHeight;
-      referencia.current.style.maxHeight = `${altura}px`;
-    }
     const inicial = () => {
       setModelo("/portafolio/modelos3d/calabaza.glb");
     };
@@ -27,14 +22,14 @@ function Categorias() {
   const seleccion = (selectedIndex) => {
     if (selectedIndex === 0) {
       return (
-        <div className="flex flex-col h-1/2 border-white border-4 rounded-3xl lg:w-[45rem]">
+        <div className="flex flex-col h-1/2 border-white border-4 rounded-3xl xl:w-2/3 xl:h-[85%] xl:mr-8">
           <Panel3D modelo3D={modelo} />
         </div>
       );
     }
   };
   return (
-    <TabGroup className="flex flex-col flex-1 min-h-0">
+    <TabGroup className="flex flex-col flex-1 min-h-0 justify-center">
       {({ selectedIndex }) => (
         <>
           <TabList className="flex flex-row justify-around">
@@ -52,17 +47,20 @@ function Categorias() {
                     : { scale: 1 }
                 }
               >
-                <Tab className="text-[1.5rem] px-[0.5rem] rounded-2xl focus:outline-0 data-[selected]:bg-white/10 data-[hover]:bg-white/5 data-[selected]:data-[hover]:bg-white/15 data-[focus]:outline-1 data-[focus]:outline-white">
+                <Tab className="text-[1.5rem] xl:text-[2rem] px-[0.5rem] rounded-2xl focus:outline-0 data-[selected]:bg-white/10 data-[hover]:bg-white/5 data-[selected]:data-[hover]:bg-white/15 data-[focus]:outline-1 data-[focus]:outline-white">
                   {nombre}
                 </Tab>
               </motion.div>
             ))}
           </TabList>
-          <div className="flex flex-col h-svh lg:flex-row lg:flex-0">
-            <TabPanels className="flex flex-col h-1/2 p-4">
+          <div className="flex flex-col h-[90%] xl:flex-row xl:flex-1 xl:items-center">
+            <TabPanels className="flex flex-col h-1/2 p-4 xl:w-1/3 xl:h-full xl:ml-8">
               {categorias.map(({ nombre, proyectos }) => (
-                <TabPanel key={nombre} className="flex flex-col flex-1 min-h-0">
-                  <ul ref={referencia} className="overflow-y-auto">
+                <TabPanel
+                  key={nombre}
+                  className="flex flex-col flex-1 min-h-0 xl:my-8"
+                >
+                  <ul className="overflow-y-auto">
                     {proyectos.map((proyecto) => (
                       <li
                         key={proyecto.id}
@@ -79,7 +77,7 @@ function Categorias() {
                         }}
                       >
                         <span
-                          className={`cursor-pointer hover:bg-white/5 px-[0.5rem] rounded-2xl ${
+                          className={`lg:text-[2rem] cursor-pointer hover:bg-white/5 px-[0.5rem] rounded-2xl ${
                             modelo === proyecto.url ? "bg-white/10" : ""
                           }`}
                         >

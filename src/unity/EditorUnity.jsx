@@ -2,7 +2,6 @@ import { useEffect, useRef } from "react";
 
 function EditorUnity() {
   const canvasRef = useRef(null);
-
   useEffect(() => {
     const script = document.createElement("script");
     script.src =
@@ -36,7 +35,7 @@ function EditorUnity() {
     <canvas
       id="unity-canvas"
       ref={canvasRef}
-      style={{ width: "100%", height: "100vh" }}
+      style={{ width: "100%", height: "100%" }}
       tabIndex={0}
     />
   );

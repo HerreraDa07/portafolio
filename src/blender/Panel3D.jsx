@@ -7,6 +7,7 @@ import {
 } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Suspense, useEffect } from "react";
+
 function Model({ url }) {
   const { scene } = useGLTF(url);
   const limites = useBounds();
